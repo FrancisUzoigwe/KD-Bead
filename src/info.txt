@@ -1,0 +1,112 @@
+import {useState} from 'react'
+import styled from "styled-components"
+// import {BsArrowRight} from "react-icons/bs"
+import {AiOutlineClose,AiOutlinePlayCircle} from "react-icons/ai"
+import vid from "../../assets/video.mp4"
+
+const Button = () => {
+  const [showVideo, setshowVideo] = useState<boolean>(false)
+
+   const onshowVideo = ()=>{
+    setshowVideo(!showVideo)
+   }
+    console.log(showVideo);
+
+  return (
+    <div>
+        <Container>
+            <span>Watch Advert</span>
+            <Icon
+            onClick={onshowVideo}
+             />
+           
+        </Container>
+
+        {
+          showVideo ?   
+          <Div>
+            <Backdrop onClick={onshowVideo}>
+            <VideoHolder src={vid} controls  />
+            </Backdrop>
+            <Icon2 size={30} onClick={onshowVideo}/>
+            
+           </Div>
+           : null
+          
+        }
+      
+    </div>
+  )
+}
+
+export default Button
+const Icon2 = styled(AiOutlineClose)`
+font-size: 30px;
+color: red;
+position: absolute;
+top: 170px;
+right: 430px;
+transition: all 350ms;
+:hover{
+  transform:(1.09);
+  cursor:pointer;
+}
+
+`
+const Div = styled.div`
+width:100%;
+height:100%;
+display:flex;
+justify-content: center;
+align-items:center;
+`
+const VideoHolder = styled.video`
+width: 350px;
+height: 250px;
+object-fit: cover;
+border-radius: 10px;
+z-index:10;
+position:absolute;
+overflow:hidden;
+
+`
+const Backdrop = styled.div`
+background: rgba( 255, 255, 255, 0.25 );
+box-shadow: 0 8px 32px 0 rgba( 31, 38, 135, 0.37 );
+backdrop-filter: blur( 2px );
+-webkit-backdrop-filter: blur( 2px );
+border-radius: 10px;
+border: 1px solid rgba( 255, 255, 255, 0.18 );
+width:100%;
+height:100%;
+position: absolute;
+top:0;
+left:0;
+display: flex;
+justify-content: center;
+align-items:center;
+overflow:hidden;
+`
+const  Icon = styled(AiOutlinePlayCircle)`
+border-radius: 50%;
+font-size: 13px;
+background-color: white;
+margin:0 5px;
+color: #FF6452;
+:hover{
+  /* margin-left: 8px; */
+  cursor: pointer;
+}
+`
+const  Container = styled.div`
+width:120px;
+height: 40px;
+border-radius: 40px;
+background-color: #FF6452;
+display: flex;
+align-items: center;
+justify-content: center;
+color: white;
+`
+
+
